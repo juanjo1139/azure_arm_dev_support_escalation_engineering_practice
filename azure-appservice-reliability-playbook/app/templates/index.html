@@ -1,0 +1,19 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Azure App Service Reliability Demo</title>
+  <style> body{font-family: Arial, sans-serif; padding:20px;} code{background:#f6f6f6; padding:2px 4px;} </style>
+</head>
+<body>
+<h1>Azure App Service Reliability Demo</h1>
+<p>Failure mode: <strong>{{ fail_mode }}</strong></p>
+<ul>
+  <li><a href="/health">/health</a></li>
+  <li><a href="/simulate">/simulate</a> (triggers failures depending on mode)</li>
+</ul>
+<p>Set environment variable <code>APP_FAILMODE</code> to one of <code>none</code>, <code>db_timeout</code>, <code>bad_secret</code>, <code>spike</code>.</p>
+<p>Optionally set <code>APP_SECRET</code> to avoid <code>bad_secret</code> failures.</p>
+</body>
+</html>

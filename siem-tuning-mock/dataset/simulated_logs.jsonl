@@ -1,0 +1,6 @@
+
+{"timestamp":"2025-03-20T12:00:00Z","source":"app","level":"error","type":"HTTP500","path":"/simulate","client_ip":"10.1.2.3"}
+{"timestamp":"2025-03-20T12:00:05Z","source":"app","level":"error","type":"DependencyTimeout","service":"db"}
+{"timestamp":"2025-03-20T12:00:10Z","source":"app","level":"warn","type":"HighCPU"}
+{"timestamp":"2025-03-20T12:01:00Z","source":"auth","level":"error","type":"FailedLogin","user":"svc-reporter","client_ip":"203.0.113.5"}
+{"timestamp":"2025-03-20T12:02:00Z","source":"auth","level":"error","type":"FailedLogin","user":"svc-reporter","client_ip":"203.0.113.5"}

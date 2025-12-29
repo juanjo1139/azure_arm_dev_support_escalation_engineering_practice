@@ -1,0 +1,13 @@
+
+// Example KQL snippets similar to Sentinel analytics
+// Deduplicate noisy alerts
+AppLogs
+| where level == 'error'
+| summarize count() by type, bin(timestamp, 5m)
+| where count_ > 10
+
+// Enrich with watchlist (pseudo table)
+let Watchlist = externaldata(indicator:string, description:string) ["https://example.com/watchlist.csv"] with(format='csv');
+AppLogs
+| where client_ip in (Watchlist | project indicator)
+| project timestamp, source, type, client_ip

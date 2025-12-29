@@ -1,0 +1,4 @@
+{
+  "APP_FAILMODE": "bad_secret",
+  "APP_SECRET": ""
+}
