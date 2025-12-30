@@ -1,0 +1,60 @@
+PS /home/juan> ./arm_support_engineer_prep/azure-appservice-reliability-playbook/deploy.ps1
+Login to Azure if needed
+{
+  "id": "/subscriptions/dd2f103a-3014-43d5-aba1-5f909b9b6954/resourceGroups/rg-reliability-demo",
+  "location": "eastus",
+  "managedBy": null,
+  "name": "rg-reliability-demo",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+(MissingSubscriptionRegistration) The subscription is not registered to use namespace 'Microsoft.Web'. See https://aka.ms/rps-not-found for how to register subscriptions.
+Code: MissingSubscriptionRegistration
+Message: The subscription is not registered to use namespace 'Microsoft.Web'. See https://aka.ms/rps-not-found for how to register subscriptions.
+Exception Details:      (MissingSubscriptionRegistration) The subscription is not registered to use namespace 'Microsoft.Web'. See https://aka.ms/rps-not-found for how to register subscriptions.
+        Code: MissingSubscriptionRegistration
+        Message: The subscription is not registered to use namespace 'Microsoft.Web'. See https://aka.ms/rps-not-found for how to register subscriptions.
+        Target: Microsoft.Web
+The plan 'asp-reliability-demo' doesn't exist.
+(Conflict) Failed to register resource provider 'microsoft.operationalinsights'. Ensure that microsoft.operationalinsights is registered for this subscription.
+Code: Conflict
+Message: Failed to register resource provider 'microsoft.operationalinsights'. Ensure that microsoft.operationalinsights is registered for this subscription.
+Inner error: {
+    "trace": [
+        "Microsoft.AppInsights.Nexus.DataContracts.Resources.ManagedResources.MissingProviderRegistrationException"
+    ]
+}
+WARNING:  Please use `az feature register --name AIWorkspacePreview --namespace microsoft.insights` to register the feature
+ERROR: (ResourceNotFound) The Resource 'Microsoft.Insights/components/ai-reliability-demo' under resource group 'rg-reliability-demo' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Insights/components/ai-reliability-demo' under resource group 'rg-reliability-demo' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+(ResourceNotFound) The Resource 'Microsoft.Web/sites/reliability-demo-$(Get-Random)' under resource group 'rg-reliability-demo' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Web/sites/reliability-demo-$(Get-Random)' under resource group 'rg-reliability-demo' was not found.For more details please go to https://aka.ms/ARMResourceNotFoundFix
+argument --settings: expected at least one argument
+
+Examples from AI knowledge base:
+az webapp config appsettings set --resource-group MyResourceGroup --name MyUniqueApp --settings WEBSITE_NODE_DEFAULT_VERSION=6.9.1
+Set the default NodeJS version to 6.9.1 for a web app.
+
+https://docs.microsoft.com/en-US/cli/azure/webapp/config/appsettings#az_webapp_config_appsettings_set
+Read more about the command in reference docs
+APP_FAILMODE=none: /home/juan/arm_support_engineer_prep/azure-appservice-reliability-playbook/deploy.ps1:26
+Line |
+  26 |    APP_FAILMODE=none `
+     |    ~~~~~~~~~~~~~~~~~
+     | The term 'APP_FAILMODE=none' is not recognized as a name of a cmdlet, function, script file, or executable program. Check the
+     | spelling of the name, or if a path was included, verify that the path is correct and try again.
+This command has been deprecated and will be removed in a future release. Use 'az webapp deploy' instead.
+Getting scm site credentials for zip deployment
+(ResourceNotFound) The Resource 'Microsoft.Web/sites/reliability-demo-$(Get-Random)' under resource group 'rg-reliability-demo' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Web/sites/reliability-demo-$(Get-Random)' under resource group 'rg-reliability-demo' was not found.For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Deployment complete. Web app:
+(ResourceNotFound) The Resource 'Microsoft.Web/sites/reliability-demo-$(Get-Random)' under resource group 'rg-reliability-demo' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix
+Code: ResourceNotFound
+Message: The Resource 'Microsoft.Web/sites/reliability-demo-$(Get-Random)' under resource group 'rg-reliability-demo' was not found.For more details please go to https://aka.ms/ARMResourceNotFoundFix
+PS /home/juan>
