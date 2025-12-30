@@ -1,5 +1,5 @@
 
-# Microsoft Support Engineer Prep Pack (Juan)
+# Microsoft Support Engineer Prep Pack
 
 This pack contains five mini-projects and templates to demonstrate capabilities aligned to the ARM – Support Engineer (Developer exp) role.
 
