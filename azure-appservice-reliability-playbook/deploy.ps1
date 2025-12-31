@@ -23,12 +23,28 @@ $providers = @('Microsoft.Web','Microsoft.Insights','Microsoft.OperationalInsigh
 foreach ($p in $providers) {
   $state = (az provider show --namespace $p --query registrationState -o tsv) 2>$null
   $attempt = 0
-  while ($state -ne 'Registered' -and $attempt -lt 20) {
-    Start-Sleep -Seconds 3
+  while ($state -ne 'Registered' -and $attempt -lt 40) {
+    Start-Sleep -Seconds 5
     $state = (az provider show --namespace $p --query registrationState -o tsv) 2>$null
     $attempt++
   }
   if ($state -ne 'Registered') { Write-Warning "Provider $p not registered after waiting; you may need subscription permissions or to register manually." }
+}
+
+# Register Application Insights preview feature if available (may be required for some tenants)
+Write-Host 'Ensuring AIWorkspacePreview feature is registered for Microsoft.Insights (may take a minute)'
+try {
+  az feature register --namespace microsoft.insights --name AIWorkspacePreview 2>$null | Out-Null
+  $featState = (az feature show --namespace microsoft.insights --name AIWorkspacePreview --query properties.state -o tsv) 2>$null
+  $fattempt = 0
+  while ($featState -ne 'Registered' -and $fattempt -lt 40) {
+    Start-Sleep -Seconds 5
+    $featState = (az feature show --namespace microsoft.insights --name AIWorkspacePreview --query properties.state -o tsv) 2>$null
+    $fattempt++
+  }
+  if ($featState -ne 'Registered') { Write-Warning 'AIWorkspacePreview feature not registered; some App Insights functionality may not be available.' }
+} catch {
+  Write-Warning 'Could not register AIWorkspacePreview feature (insufficient permissions?)'
 }
 
 az group create -n $RgName -l $Location
@@ -49,7 +65,10 @@ $ikey = (az monitor app-insights component show -g $RgName -a $InsightsName --qu
 
 # Enable logging & settings
 az webapp log config -g $RgName -n $WebAppName --web-server-logging filesystem
-az webapp config appsettings set -g $RgName -n $WebAppName --settings "APP_FAILMODE=none" "APP_SECRET=changeme" "APPINSIGHTS_INSTRUMENTATIONKEY=$ikey"
+# Configure app settings; only set APPINSIGHTS_INSTRUMENTATIONKEY if we retrieved an instrumentation key
+$settings = @('APP_FAILMODE=none','APP_SECRET=changeme')
+if (-not [string]::IsNullOrWhiteSpace($ikey)) { $settings += "APPINSIGHTS_INSTRUMENTATIONKEY=$ikey" } else { Write-Warning 'Instrumentation key not found; skipping APPINSIGHTS_INSTRUMENTATIONKEY app setting.' }
+az webapp config appsettings set -g $RgName -n $WebAppName --settings $settings
 
 # Deploy via ZIP
 $zipPath = Join-Path (Split-Path $PSScriptRoot) 'app.zip'
