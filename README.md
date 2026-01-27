@@ -1,7 +1,7 @@
 
-# Azure ARM Developer Escalation Support Engineer Prep Pack
+# Azure ARM Developer Support Escalation Engineering Practice
 
-This pack contains five mini-projects and templates to demonstrate capabilities aligned to the Azure ARM Developer Escalation Support Engineer role.
+This pack contains five mini-projects and templates to demonstrate capabilities aligned to the Azure ARM Developer Support Escalation Engineer role.
 
 ## Contents
 1. **azure-appservice-reliability-playbook/** – Flask app + runbook to triage Azure App Service outages (500s, timeouts, misconfig).
